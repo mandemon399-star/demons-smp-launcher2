@@ -14,13 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/configure-pages@v4
-
-      - uses: actions/upload-pages-artifact@v1
         with:
-          path: ./
+          persist-credentials: true
 
-      - uses: actions/deploy-pages@v1
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          wait-for-render: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
