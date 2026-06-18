@@ -1,0 +1,19 @@
+[Unit]
+Description=Demons SMP Launcher static server
+After=network.target
+
+[Service]
+Type=simple
+# Update WorkingDirectory to the full path of your repository on the host
+WorkingDirectory=/path/to/your/repo
+ExecStart=/usr/bin/python3 -m http.server 8000
+Restart=always
+RestartSec=5
+# Change User to the user that should run the service
+User=youruser
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=demons-launcher
+
+[Install]
+WantedBy=multi-user.target
